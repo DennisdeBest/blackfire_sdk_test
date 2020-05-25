@@ -18,8 +18,7 @@ services:
       - "traefik.http.routers.blackfiresdk.entrypoints=http"
 
   php:
-    image: codebuds/php:dev-latest
-    user: exploit
+    image: codebuds/php:prod-1.0.2
     restart: on-failure
     networks:
       - internal
@@ -27,8 +26,8 @@ services:
     external_links:
       - maria:maria
     environment:
-      - DATABASE_URL=mysql://exploit:exploit@maria:3306/blackfiresdk
-      - APP_ENV=dev
+      - DATABASE_URL=mysql://user:password@maria:3306/blackfiresdk
+      - APP_ENV=prod
     volumes:
       - ./:/var/www/symfony:cached
     command: >
